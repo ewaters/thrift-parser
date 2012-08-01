@@ -104,4 +104,13 @@ sub set_methods : Tests(4) {
 	throws_ok { $set->is_set('UT') } 'Thrift::Parser::InvalidTypedValue', "Can't call is_set() with a string for a i32 set";
 }
 
+sub enum_errors : Test {
+	my $class = 'Thrift::Parser::Type::Enum';
+	throws_ok { $class->compose(undef) } 'Thrift::Parser::InvalidArgument', "Enum doesn't take undef";
+	# Can't do further tests without IDL providing specification
+}
+
+# Won't test Struct here as it's a FieldSet
+
+# Won't test Exception here as it's a Struct
 1;
