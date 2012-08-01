@@ -50,8 +50,6 @@ sub compose {
         $self = bless { %$self, value => [] }, $class;
     }
 
-    #warn Dumper({ compose => $class, self => $self, value => $value });
-
     my $val_type = $self->{val_type_class};
     if (! defined $val_type) {
         if ($class->idl) {

@@ -15,7 +15,7 @@ use warnings;
 use Scalar::Util qw(blessed);
 use base qw(Thrift::Parser::Type);
 
-use overload '""' => sub { $_[0]->value };
+use overload '""' => sub { $_[0]->value }, 'eq' => sub { $_[0]->value };
 
 =head1 USAGE
 
