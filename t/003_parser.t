@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 16;
+use Test::More tests => 6;
 use Test::Exception;
 use Test::Deep;
 use Thrift::IDL;

@@ -127,6 +127,10 @@ Used internally by L<Thrift::Parser::Method> and L<Thrift::Parser::Struct>.  Giv
 sub compose {
     my ($self_class, $class, %args) = @_;
 
+	if (! $class->idl) {
+		die "Requires an IDL";
+	}
+
     if (! $class->idl->can('field_id')) {
         Thrift::Parser::InvalidArgument->throw(
             key => 'class', value => $class, error => "Doesn't support field_id()",
