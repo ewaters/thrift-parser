@@ -56,37 +56,9 @@ sub field_id {
     $self->array_search($name, 'fields', 'id');
 }
 
-=head2 setup
-
-A struct has children of type L<Thrift::IDL::Field> and L<Thrift::IDL::Comment>. Walk through all these children and associate the comments with the fields that preceeded them (if perl style) or with the field following.
-
-=cut
-
 sub setup {
     my $self = shift;
-
-    my (@fields, @comments, $last_field);
-    foreach my $child (@{ $self->children }) {
-        if ($child->isa('Thrift::IDL::Field')) {
-            $child->{comments} = [ @comments ];
-            push @fields, $child;
-            $last_field = $child;
-            @comments = ();
-        }
-        elsif ($child->isa('Thrift::IDL::Comment')) {
-            # Perl-style comments are postfix to the previous element
-            if ($child->style eq 'perl_single') {
-                push @{ $last_field->{comments} }, $child;
-            }
-            else {
-                push @comments, $child;
-            }
-        }
-        else {
-            die "Unrecognized child of ".ref($self)." (".ref($child)."\n";
-        }
-    }
-    $self->children(\@fields);
+	$self->_setup('children');
 }
 
 1;

@@ -25,10 +25,14 @@ Accessors
 
 =cut
 
-use overload '""' => sub {
-    my $self = shift;
-    return $self->can('to_str') ? $self->to_str : ref($self);
-};
+use overload
+	'""' => \&_overload_string,
+	'eq' => \&_overload_string;
+
+sub _overload_string {
+	my $self = shift;
+	return $self->can('to_str') ? $self->to_str : ref($self);
+}
 
 =head2 children_of_type ($type)
 
@@ -70,6 +74,40 @@ sub array_search {
         };
     }
     return $self->{$cache_key}{$value};
+}
+
+=head2 setup
+
+A struct has children of type L<Thrift::IDL::Field> and L<Thrift::IDL::Comment>. Walk through all these children and associate the comments with the fields that preceeded them (if perl style) or with the field following.
+
+=cut
+
+sub _setup {
+    my ($self, $key) = @_;
+	return if $self->{"_setup_called_$key"}++;
+
+	my (@fields, @comments, $last_field);
+	foreach my $child (@{ $self->$key }) {
+		if ($child->isa('Thrift::IDL::Field')) {
+			$child->{comments} = [ @comments ];
+			push @fields, $child;
+			$last_field = $child;
+			@comments = ();
+		}
+		elsif ($child->isa('Thrift::IDL::Comment')) {
+			# Perl-style comments are postfix to the previous element
+			if ($child->style eq 'perl_single') {
+				push @{ $last_field->{comments} }, $child;
+			}
+			else {
+				push @comments, $child;
+			}
+		}
+		else {
+			die "Unrecognized child of ".ref($self)." (".ref($child)."\n";
+		}
+	}
+	$self->$key(\@fields);
 }
 
 1;

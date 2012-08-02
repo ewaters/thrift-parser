@@ -52,8 +52,10 @@ sub create_idl : Test(startup) {
 }	
 
 sub class_resolution : Tests(1) {
-	my $number_idl = $idl->typedef_named('number');
-	is $parser->idl_type_class($number_idl), 'TPT::IDL::number', "idl_type_class() with custom type";
+	my $field_number_type = $idl->struct_named('action')->field_named('num1')->type;
+	is $parser->idl_type_class($field_number_type), 'TPT::number', "idl_type_class() with custom type";
+
+	my $type = TPT::number->new();
 }
 
 1;

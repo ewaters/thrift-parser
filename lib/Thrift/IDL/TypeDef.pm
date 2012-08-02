@@ -27,7 +27,7 @@ Scalar accessors
 
 sub to_str {
     my ($self) = @_;
-    return sprintf 'typdef "%s" isa %s', $self->name, $self->type;
+    return sprintf 'typedef "%s" isa %s', $self->name, $self->type;
 }
 
 1;

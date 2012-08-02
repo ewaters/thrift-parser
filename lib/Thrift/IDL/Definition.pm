@@ -34,7 +34,7 @@ sub full_name {
         return $self->name;
     }
     else {
-        return join '.', $self->{header}->basename, $self->name;
+        return join '.', $self->{header}->basename || '', $self->name;
     }
 }
 
