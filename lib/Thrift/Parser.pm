@@ -442,6 +442,10 @@ sub resolve_idl_type {
 
 L<Thrift>, L<Thrift::IDL>
 
+=head1 DEVELOPMENT
+
+This module is being developed via a git repository publicly available at http://github.com/ewaters/thrift-parser.  I encourage anyone who is interested to fork my code and contribute bug fixes or new features, or just have fun and be creative.
+
 =head1 COPYRIGHT
 
 Copyright (c) 2009 Eric Waters and XMission LLC (http://www.xmission.com/).  All rights reserved.  This program is free software; you can redistribute it and/or modify it under the same terms as Perl itself.
