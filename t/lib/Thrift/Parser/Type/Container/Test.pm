@@ -61,6 +61,32 @@ sub compose_list : Tests(6) {
 	lives_ok { $class->define('::map' => ['::i32' => '::string'])->compose($obj) }, "Deep type checking";
 }
 
+sub more_list_tests : Tests(9) {
+	my @staff_names = qw(John Mayes);
+	my @other_names = qw(Kerron Michael Angelo);
+	my $list = Thrift::Parser::Type::list->define('::list' => [ '::string' ])->compose([ \@staff_names, \@other_names ]);
+	isa_ok $list, 'Thrift::Parser::Type::list';
+	is $list->size, 2, "list size";
+	is $list->index(0)->size, int(@staff_names), "list index 0 size";
+	is $list->index(1)->size, int(@other_names), "list index 1 size";
+
+	throws_ok {
+		Thrift::Parser::Type::list->define('::list' => [ '::string' ])->compose([
+			Thrift::Parser::Type::list->define('::i32')->compose([ 1, 2, 3 ]),
+			Thrift::Parser::Type::list->define('::string')->compose(\@other_names),
+		])
+	} 'Thrift::Parser::InvalidArgument', "Failed list<list<string>> compose where parent list<>'s child isn't list<string>";
+
+	$list = Thrift::Parser::Type::list->define('::list' => [ '::string' ])->compose([
+		Thrift::Parser::Type::list->define('::string')->compose(\@staff_names),
+		Thrift::Parser::Type::list->define('::string')->compose(\@other_names),
+	]);
+	isa_ok $list, 'Thrift::Parser::Type::list';
+	is $list->size, 2, "list size";
+	is $list->index(0)->size, int(@staff_names), "list index 0 size";
+	is $list->index(1)->size, int(@other_names), "list index 1 size";
+}
+
 sub compose_map_errors : Tests(3) {
 	my $class = 'Thrift::Parser::Type::map';
 	throws_ok { $class->define('::i32', '::string')->compose(1 => "Hello") } qr/requires a HASHREF or ARRAYREF/, "Map without a ref";

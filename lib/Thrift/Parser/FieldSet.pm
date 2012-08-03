@@ -141,12 +141,16 @@ sub compose {
 
     foreach my $field (@{ $class->idl->fields }) {
         my $default_value = $field->default_value;
-        if (defined $default_value && ! defined $args{$field->name}) {
-            $args{$field->name} = $default_value;
+
+		# User may pass '_:id' or the name of the field
+		my $key = defined $args{ '_' . $field->id } ? '_' . $field->id : $field->name;
+
+        if (defined $default_value && ! defined $args{$key}) {
+            $args{$key} = $default_value;
             next;
         }
 
-        if (! defined $default_value && ! defined $args{$field->name} && ! $field->optional && $class->isa('Thrift::Parser::Type::Struct')) {
+        if (! defined $default_value && ! defined $args{$key} && ! $field->optional && $class->isa('Thrift::Parser::Type::Struct')) {
             Thrift::Parser::InvalidArgument->throw("Missing value for field '".$field->name."' in $class compose()");
         }
     }

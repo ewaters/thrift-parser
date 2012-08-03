@@ -47,7 +47,7 @@ use Params::Validate;
 use Data::Dumper;
 use File::Path; # mkpath, for full_docs_to_dir
 use base qw(Class::Accessor);
-__PACKAGE__->mk_accessors(qw(idl service));
+__PACKAGE__->mk_accessors(qw(idl service built_classes));
 use Carp;
 
 use Thrift::Parser::Types;
@@ -204,7 +204,7 @@ EOF
         }
     }
 
-    $self->{_built_classes} = \@build;
+    $self->built_classes(\@build);
 }
 
 =head2 parse_message
@@ -278,7 +278,7 @@ sub full_docs_to_dir {
     my $class = ref $self;
     $format ||= 'pod';
 
-    foreach my $built (@{ $self->{_built_classes} }) {
+    foreach my $built (@{ $self->built_classes }) {
         my $filename;
 
         if ($format eq 'pod') {
@@ -352,29 +352,6 @@ sub parse_structure {
     return Thrift::Parser::FieldSet->new({ fields => \@fields });
 }
 
-=head2 idl_type_class
-
-  my $parser_type_class = $parser->idl_type_class($thrift_idl_type_object);
-
-Maps the given L<Thrift::IDL::Type> object to one in my parser namespace.  If it's a custom type, it'll map into a dynamic class.
-
-=cut
-
-sub idl_type_class {
-    my ($self, $type) = @_;
-    if ($type->isa('Thrift::IDL::Type::Custom')) {
-        my $referenced_type = $self->idl->object_full_named($type->full_name);
-        if (! $referenced_type) {
-            die "Couldn't find definition of custom type '".$type->full_name."'";#; ".Dumper($self->idl);
-        }
-        my $namespace = $referenced_type->{header}->namespace('perl');
-        return join '::', (defined $namespace ? ($namespace) : ()), $type->local_name;
-    }
-    else {
-        return 'Thrift::Parser::Type::' . $type->name;
-    }
-}
-
 =head2 parse_type
 
   my $typed_value = $parser->parse_type($transport, { idl => $thrift_idl_type_object || type => 4 });
@@ -418,11 +395,36 @@ sub parse_type {
     return $typed_value;
 }
 
+=head2 idl_type_class
+
+  my $parser_type_class = $parser->idl_type_class($thrift_idl_type_object);
+
+Maps the given L<Thrift::IDL::Type> object to one in my parser namespace.  If it's a custom type, it'll map into a dynamic class.
+
+=cut
+
+sub idl_type_class {
+    my ($self, $type) = @_;
+    if ($type->isa('Thrift::IDL::Type::Custom')) {
+        my $referenced_type = $self->idl->object_full_named($type->full_name);
+        if (! $referenced_type) {
+            die "Couldn't find definition of custom type '".$type->full_name."'";#; ".Dumper($self->idl);
+        }
+        my $namespace = $referenced_type->{header}->namespace('perl');
+        return join '::', (defined $namespace ? ($namespace) : ()), $type->local_name;
+    }
+    else {
+        return 'Thrift::Parser::Type::' . $type->name;
+    }
+}
+
 =head2 resolve_idl_type
 
-  my $thrift_idl_type_object = $parser->resolve_idl_type($thrift_parser_type_object);
+  my $thrift_idl_type_object = $parser->resolve_idl_type($thrift_idl_custom_type_object);
 
-Returns a L<Thrift::IDL::Type> object from the given L<Thrift::IDL::Parser> object.
+Returns the base L<Thrift::IDL::Type> object from the given L<Thrift::IDL::Type::Custom> object
+
+FIXME: Shouldn't this be in L<Thrift::IDL>?
 
 =cut
 
