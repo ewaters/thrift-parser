@@ -57,6 +57,8 @@ use Thrift::Parser::Message;
 use Thrift::Parser::Field;
 use Thrift::Parser::FieldSet;
 
+our $VERSION = '0.01';
+
 =head1 METHODS
 
 =head2 new
@@ -424,9 +426,9 @@ sub idl_type_class {
 
 Returns the base L<Thrift::IDL::Type> object from the given L<Thrift::IDL::Type::Custom> object
 
-FIXME: Shouldn't this be in L<Thrift::IDL>?
-
 =cut
+
+# FIXME: Shouldn't this be in L<Thrift::IDL>?
 
 sub resolve_idl_type {
     my ($self, $type) = @_;

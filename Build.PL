@@ -1,0 +1,26 @@
+use Module::Build;
+
+my $build = Module::Build->new(
+	module_name => 'Thrift::Parser',
+	license     => 'perl',
+#	sign        => 1,
+	configure_requires => {
+		'Module::Build' => 0.4,
+	},
+	build_requires => {
+		'Test::More' => 0,
+		'Test::Class' => 0,
+	},
+	requires => {
+		'Thrift' => 0,
+		'Parse::RecDescent' => 0,
+		'Class::Accessor'   => 0,
+		'Class::Accessor::Grouped' => 0,
+		'Class::Data::Accessor' => 0,
+		'Class::ISA'        => 0,
+	},
+	create_makefile_pl => 'small',
+);
+
+$build->create_build_script;
+
