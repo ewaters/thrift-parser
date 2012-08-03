@@ -264,9 +264,15 @@
    },
    "release_status" : "stable",
    "resources" : {
+      "bugtracker" : {
+         "web" : "http://github.com/ewaters/thrift-parser/issues?labels=bug"
+      },
       "license" : [
          "http://dev.perl.org/licenses/"
-      ]
+      ],
+      "repository" : {
+         "url" : "http://github.com/ewaters/thrift-parser"
+      }
    },
    "version" : "0.01"
 }

@@ -70,3 +70,4 @@ t/lib/Thrift/Parser/Type/Number/Test.pm
 t/lib/Thrift/Parser/Type/Test.pm
 t/thrift/shared.thrift
 t/thrift/tutorial.thrift
+README

@@ -3,7 +3,8 @@ use Module::Build;
 my $build = Module::Build->new(
 	module_name => 'Thrift::Parser',
 	license     => 'perl',
-#	sign        => 1,
+	sign        => 1,
+	create_readme => 1,
 	configure_requires => {
 		'Module::Build' => 0.4,
 	},
@@ -20,6 +21,12 @@ my $build = Module::Build->new(
 		'Class::ISA'        => 0,
 	},
 	create_makefile_pl => 'small',
+	meta_merge => {
+		resources => {
+			repository => "http://github.com/ewaters/thrift-parser",
+			bugtracker => "http://github.com/ewaters/thrift-parser/issues?labels=bug",
+		},
+	},
 );
 
 $build->create_build_script;

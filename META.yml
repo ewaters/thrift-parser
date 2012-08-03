@@ -191,5 +191,7 @@ requires:
   Parse::RecDescent: 0
   Thrift: 0
 resources:
+  bugtracker: http://github.com/ewaters/thrift-parser/issues?labels=bug
   license: http://dev.perl.org/licenses/
+  repository: http://github.com/ewaters/thrift-parser
 version: 0.01
