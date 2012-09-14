@@ -31,6 +31,7 @@
             "Class::Accessor::Grouped" : "0",
             "Class::Data::Accessor" : "0",
             "Class::ISA" : "0",
+            "Exception::Class" : "0",
             "Parse::RecDescent" : "0",
             "Thrift" : "0"
          }
@@ -163,7 +164,7 @@
       },
       "Thrift::Parser" : {
          "file" : "lib/Thrift/Parser.pm",
-         "version" : "0.01"
+         "version" : "0.02"
       },
       "Thrift::Parser::Exceptions" : {
          "file" : "lib/Thrift/Parser/Exceptions.pm",
@@ -274,5 +275,5 @@
          "url" : "http://github.com/ewaters/thrift-parser"
       }
    },
-   "version" : "0.01"
+   "version" : "0.02"
 }

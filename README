@@ -95,7 +95,7 @@ SEE ALSO
 
 DEVELOPMENT
     This module is being developed via a git repository publicly available
-    at http://github.com/ewaters/thrift-parser. I encourage anyone who is
+    at <http://github.com/ewaters/thrift-parser>. I encourage anyone who is
     interested to fork my code and contribute bug fixes or new features, or
     just have fun and be creative.
 

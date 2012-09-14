@@ -19,6 +19,7 @@ my $build = Module::Build->new(
 		'Class::Accessor::Grouped' => 0,
 		'Class::Data::Accessor' => 0,
 		'Class::ISA'        => 0,
+		'Exception::Class' => 0,
 	},
 	create_makefile_pl => 'small',
 	meta_merge => {
