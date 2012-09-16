@@ -4,6 +4,7 @@ author:
   - 'Eric Waters <ewaters@gmail.com>'
 build_requires:
   Test::Class: 0
+  Test::Deep: 0
   Test::More: 0
 configure_requires:
   Module::Build: 0.4
@@ -110,7 +111,7 @@ provides:
     version: 0
   Thrift::Parser:
     file: lib/Thrift/Parser.pm
-    version: 0.02
+    version: 0.03
   Thrift::Parser::Exceptions:
     file: lib/Thrift/Parser/Exceptions.pm
     version: 0
@@ -189,10 +190,11 @@ requires:
   Class::Data::Accessor: 0
   Class::ISA: 0
   Exception::Class: 0
+  Params::Validate: 0
   Parse::RecDescent: 0
   Thrift: 0
 resources:
   bugtracker: http://github.com/ewaters/thrift-parser/issues?labels=bug
   license: http://dev.perl.org/licenses/
   repository: http://github.com/ewaters/thrift-parser
-version: 0.02
+version: 0.03

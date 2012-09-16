@@ -9,8 +9,9 @@ my $build = Module::Build->new(
 		'Module::Build' => 0.4,
 	},
 	build_requires => {
-		'Test::More' => 0,
+		'Test::More'  => 0,
 		'Test::Class' => 0,
+		'Test::Deep'  => 0,
 	},
 	requires => {
 		'Thrift' => 0,
@@ -20,6 +21,7 @@ my $build = Module::Build->new(
 		'Class::Data::Accessor' => 0,
 		'Class::ISA'        => 0,
 		'Exception::Class' => 0,
+		'Params::Validate' => 0,
 	},
 	create_makefile_pl => 'small',
 	meta_merge => {

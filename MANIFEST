@@ -71,3 +71,4 @@ t/lib/Thrift/Parser/Type/Test.pm
 t/thrift/shared.thrift
 t/thrift/tutorial.thrift
 README
+Changes

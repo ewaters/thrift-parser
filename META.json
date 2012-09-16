@@ -17,6 +17,7 @@
       "build" : {
          "requires" : {
             "Test::Class" : "0",
+            "Test::Deep" : "0",
             "Test::More" : "0"
          }
       },
@@ -32,6 +33,7 @@
             "Class::Data::Accessor" : "0",
             "Class::ISA" : "0",
             "Exception::Class" : "0",
+            "Params::Validate" : "0",
             "Parse::RecDescent" : "0",
             "Thrift" : "0"
          }
@@ -164,7 +166,7 @@
       },
       "Thrift::Parser" : {
          "file" : "lib/Thrift/Parser.pm",
-         "version" : "0.02"
+         "version" : "0.03"
       },
       "Thrift::Parser::Exceptions" : {
          "file" : "lib/Thrift/Parser/Exceptions.pm",
@@ -275,5 +277,5 @@
          "url" : "http://github.com/ewaters/thrift-parser"
       }
    },
-   "version" : "0.02"
+   "version" : "0.03"
 }
