@@ -22,6 +22,7 @@ my $build = Module::Build->new(
 		'Class::ISA'        => 0,
 		'Exception::Class' => 0,
 		'Params::Validate' => 0,
+		'JSON::XS'         => 0,
 	},
 	create_makefile_pl => 'small',
 	meta_merge => {

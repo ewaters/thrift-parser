@@ -111,7 +111,7 @@ provides:
     version: 0
   Thrift::Parser:
     file: lib/Thrift/Parser.pm
-    version: 0.03
+    version: 0.04
   Thrift::Parser::Exceptions:
     file: lib/Thrift/Parser/Exceptions.pm
     version: 0
@@ -190,6 +190,7 @@ requires:
   Class::Data::Accessor: 0
   Class::ISA: 0
   Exception::Class: 0
+  JSON::XS: 0
   Params::Validate: 0
   Parse::RecDescent: 0
   Thrift: 0
@@ -197,4 +198,4 @@ resources:
   bugtracker: http://github.com/ewaters/thrift-parser/issues?labels=bug
   license: http://dev.perl.org/licenses/
   repository: http://github.com/ewaters/thrift-parser
-version: 0.03
+version: 0.04

@@ -1,5 +1,9 @@
 Revision history for Thrift::Parser
 
+v0.04  Tue Sep 18 13:43:29 EDT 2012
+
+  - Add dependency for JSON::XS
+
 v0.03  Sun Sep 16 11:56:33 EDT 2012
 
   - Add dependency on Test::Deep and Params::Validate

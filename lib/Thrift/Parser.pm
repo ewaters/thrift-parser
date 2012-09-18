@@ -57,7 +57,7 @@ use Thrift::Parser::Message;
 use Thrift::Parser::Field;
 use Thrift::Parser::FieldSet;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 =head1 METHODS
 
