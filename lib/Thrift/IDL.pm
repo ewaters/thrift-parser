@@ -318,18 +318,18 @@ sub _parse_thrift {
     my $parsed = $class->parser($debug)->document(\$data) or die "Bad input";
 
     if ($data !~ m{^\s*$}s) {
-        print "Parsing failed to consume all of the input; stopped at:\n";
+        my $error = "Parsing failed to consume all of the input; stopped at:\n";
         my @lines = grep { $_ !~ /^\s*$/ } split /\n/, $data;
         my $cropped = int @lines > 20 ? 1 : 0;
         foreach my $line (@lines[0 .. 19]) {
             #next unless $line;
             chomp $line;
-            print "> $line\n";
+            $error .= "> $line\n";
         }
         if ($cropped) {
-            print " (more cropped)\n";
+            $error .= " (more cropped)\n";
         }
-        exit 1;
+		die $error;
     }
 
     # Setup return of header list
