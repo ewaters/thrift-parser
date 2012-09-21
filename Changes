@@ -1,5 +1,9 @@
 Revision history for Thrift::Parser
 
+v0.05  Fri, 21 Sep 2012 13:13:05 -0400
+
+  - Don't exit upon failed parsing
+
 v0.04  Tue Sep 18 13:43:29 EDT 2012
 
   - Add dependency for JSON::XS

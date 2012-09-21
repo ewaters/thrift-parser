@@ -167,7 +167,7 @@
       },
       "Thrift::Parser" : {
          "file" : "lib/Thrift/Parser.pm",
-         "version" : "0.04"
+         "version" : "0.05"
       },
       "Thrift::Parser::Exceptions" : {
          "file" : "lib/Thrift/Parser/Exceptions.pm",
@@ -278,5 +278,5 @@
          "url" : "http://github.com/ewaters/thrift-parser"
       }
    },
-   "version" : "0.04"
+   "version" : "0.05"
 }
