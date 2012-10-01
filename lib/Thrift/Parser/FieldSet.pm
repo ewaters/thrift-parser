@@ -168,7 +168,7 @@ sub compose {
         if (! $idl_field) {
             Thrift::Parser::InvalidArgument->throw(
                 error => "Failed to find referenced field '$key' in the $class IDL spec",
-                key => $key, value => $args{value},
+                key => $key, value => $args{$key},
             );
         }
         my $type = $idl_field->type;

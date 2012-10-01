@@ -22,6 +22,11 @@ sub create_idl : Test(startup => 1) {
 
 	# Perl?  What what?
 
+	/*
+		I am a much longer comment block.
+		There are two lines here.
+	*/
+
 	const i32 MEANINGOFLIFE = 42
 
 	typedef i32 number
@@ -77,9 +82,9 @@ sub base_methods : Tests(4) {
 	is $service->name, 'Calculator', "array_search() found matching result";
 }
 
-sub comments : Tests(8) {
+sub comments : Tests(10) {
 	my $comments = $idl->comments;
-	is int(@$comments), 3, "Found three comments";
+	is int(@$comments), 4, "Found four comments";
 
 	is $comments->[0]->value, "// I am a single line comment", "value()";
 
@@ -91,6 +96,9 @@ sub comments : Tests(8) {
 
 	is $comments->[2]->style, 'perl_single', "Perl";
 	is $comments->[2]->escaped_value, 'Perl?  What what?', "Perl value";
+
+	is $comments->[3]->style, 'c_multiline', "Multiline";
+	is $comments->[3]->escaped_value, "I am a much longer comment block.\n\t\tThere are two lines here.", "True multiline test";
 }
 
 sub definition : Tests(2) {
