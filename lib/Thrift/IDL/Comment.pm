@@ -24,9 +24,9 @@ Scalar accessor
 =cut
 
 my %styles = (
-    c_multiline => qr{^/\* \s* (.+?) \s* \*/$}sx,
-    c_single    => qr{^\/\/+ \s* (.*?) \s*$}x,
-    perl_single => qr{^[#]+ \s* (.*?) \s*$}x,
+    c_multiline => qr{^/\* (.+?) \*/$}sx,
+    c_single    => qr{^\/\/+ (.*?)$}x,
+    perl_single => qr{^[#]+ (.*?)$}x,
 );
 
 =head2 style
@@ -48,13 +48,21 @@ sub style {
     die "Unrecognized comment style for '$value'";
 }
 
-=head2 escaped
+=head2 escaped_value
 
 Returns the content of the comment, based on the C<style>
 
 =cut
 
 sub escaped_value {
+    my ($self) = @_;
+	my $value = $self->escaped_value_with_whitespace;
+	$value =~ s/^\s+//;
+	$value =~ s/\s+$//;
+	return $value;
+}
+
+sub escaped_value_with_whitespace {
     my ($self) = @_;
 
     my ($escaped_value) = $self->value =~ $styles{$self->style};
