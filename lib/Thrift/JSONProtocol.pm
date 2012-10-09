@@ -107,7 +107,7 @@ sub getTypeNameForTypeID {
     if (my $typeName = $_getTypeNameForTypeID{$typeID}) {
         return $typeName;
     }
-    die TProtocolException->new( "Unrecognized type $typeID", TProtocolException::NOT_IMPLEMENTED )
+    die TProtocolException->new( "Unrecognized type $typeID", TProtocolException::UNKNOWN )
 }
 
 sub getTypeIDForTypeName {
@@ -132,7 +132,7 @@ sub getTypeIDForTypeName {
         elsif ($name[0] eq 't') { $result = TType::BOOL }
     }
     if ($result == TType::STOP) {
-        die TProtocolException->new("Unrecognized type", TProtocolException::NOT_IMPLEMENTED);
+        die TProtocolException->new("Unrecognized type", TProtocolException::UNKNOWN);
     }
     return $result;
 }

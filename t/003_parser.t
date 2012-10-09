@@ -5,7 +5,7 @@ use Test::Exception;
 use Test::Deep;
 use Thrift::IDL;
 use FindBin;
-use Thrift; # FIXME: Use something else for constants
+use Thrift;
 
 {
 	package Thrift::Protocol::Mock;
@@ -90,8 +90,6 @@ my $response = $request->compose_reply(47);
 isa_ok $response, 'Thrift::Parser::Message', "Composed method reply";
 
 # Parse a Thrift::Protocol object
-
-use Thrift;
 
 my $protocol = Thrift::Protocol::Mock->new(
 	method => 'add',
