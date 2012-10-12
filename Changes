@@ -1,5 +1,10 @@
 Revision history for Thrift::Parser
 
+v0.06  Tue Oct  9 23:24:41 EDT 2012
+
+  - Add Comment escaped_value_with_whitespace
+  - Fix JSONProtocol and add tests
+
 v0.05  Fri, 21 Sep 2012 13:13:05 -0400
 
   - Don't exit upon failed parsing
