@@ -61,6 +61,7 @@ t/004_idl_document.t
 t/100_parse_type_number.t
 t/101_parse_fieldset.t
 t/102_parse_classes.t
+t/200_jsonprotocol.t
 t/lib/Thrift/IDL/Document/Test.pm
 t/lib/Thrift/Parser/FieldSet/Test.pm
 t/lib/Thrift/Parser/Test.pm
