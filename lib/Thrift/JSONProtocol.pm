@@ -20,6 +20,7 @@ use strict;
 use warnings;
 use Thrift;
 use Thrift::Protocol;
+use Thrift::Transport;
 use base qw(Thrift::Protocol Class::Accessor);
 
 use utf8;
